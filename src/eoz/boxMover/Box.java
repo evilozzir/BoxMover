@@ -7,7 +7,8 @@ import static org.lwjgl.opengl.GL11.*;
  */
 public class Box {
     public int x,y;
-    private float colorRed, colorBlue, colorGreen;
+    private float colorRed, colorBlue, colorGreen, colorAlfa;
+    boolean selected = false;
     Box (int x, int y){
         this.y = y;
         this.x = x;
@@ -15,6 +16,7 @@ public class Box {
         colorBlue = randomGenerator.nextFloat();
         colorRed = randomGenerator.nextFloat();
         colorGreen = randomGenerator.nextFloat();
+        colorAlfa = 1.0f;
     }
     void randomizeColors(){
         Random randomGenerator = new Random();
@@ -23,7 +25,7 @@ public class Box {
         colorGreen = randomGenerator.nextFloat();
     }
     void draw(){
-        glColor3f(colorRed,colorGreen,colorGreen);
+        glColor4f(colorRed,colorBlue,colorGreen,colorAlfa);
         glBegin(GL_QUADS);
         glVertex2i(x,y);
         glVertex2i(x + 50, y);
@@ -31,5 +33,17 @@ public class Box {
         glVertex2i(x, y + 50);
         glEnd();
     }
-
+    boolean isInBounds(int mouseX, int mouseY){
+        return mouseX > x && mouseX < x + 50 && mouseY > y && mouseY < y + 50;
+    }
+    void select(){
+        colorAlfa = 0.2f;
+    }
+    void deselect(){
+        colorAlfa = 1.0f;
+    }
+    void update(int dx, int dy) {
+        x += dx;
+        y += dy;
+    }
 }
