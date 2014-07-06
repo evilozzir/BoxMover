@@ -38,13 +38,7 @@ public class Main {
                     System.exit(0);
                 }
                 if (Keyboard.getEventKey() == Keyboard.KEY_N &! Keyboard.getEventKeyState()){
-                    if(shapes.size()>0){
-                        shapes.add(new Box(shapes.get(shapes.size()-1).x+5,shapes.get(shapes.size()-1).y+5));
-                    }
-                    else{
-                        shapes.add(new Box(5,5));
-                    }
-                    System.out.printf("Created new box named %s\n",shapes.size()-1);
+                    addBox();
                 }
             }
            for(Box box : shapes) {
@@ -76,5 +70,17 @@ public class Main {
             Display.update();
             Display.sync(60);
         }
+    }
+    static void addBox(){
+        int newX = 5;
+        int newY = 5;
+        for (Box box : shapes){
+            if (box.x==newX&&box.y==newY){
+                newX=newX+5;
+                newY=newY+5;
+            }
+        }
+        shapes.add(new Box(newX,newY));
+        System.out.printf("Created new box named %s\n",shapes.size()-1);
     }
 }

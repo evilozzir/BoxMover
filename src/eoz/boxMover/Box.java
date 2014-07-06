@@ -2,13 +2,9 @@ package eoz.boxMover;
 
 import java.util.Random;
 import static org.lwjgl.opengl.GL11.*;
-/**
- * Created by Gonzalo on 02/07/2014.
- */
 public class Box {
     public int x,y;
     private float colorRed, colorBlue, colorGreen, colorAlfa;
-    boolean selected = false;
     Box (int x, int y){
         this.y = y;
         this.x = x;
