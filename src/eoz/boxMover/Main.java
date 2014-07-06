@@ -30,6 +30,9 @@ public class Main {
         glMatrixMode(GL_MODELVIEW);
         glEnable(GL_BLEND);
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        addBox();
+        addBox();
+        addBox();
         while (!Display.isCloseRequested()){
             glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
             while(Keyboard.next()){
@@ -44,8 +47,10 @@ public class Main {
            for(Box box : shapes) {
                boolean inBounds = box.isInBounds(Mouse.getX(), y - Mouse.getY());
                if(inBounds) {
-                   topShape = shapes.indexOf(box);
                    somethingIsHovered = true;
+                   if(!Mouse.isButtonDown(0)) {
+                       topShape = shapes.indexOf(box);
+                   }
                    if(Mouse.isButtonDown(0)) {
                        somethingIsSelected = true;
                    }
