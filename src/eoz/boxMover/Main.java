@@ -52,7 +52,7 @@ public class Main {
                }
                if(!inBounds){
                    if(somethingIsHovered){
-                       box.deselect();
+                       box.setColorAlfa(1F);
                    }
                    if(!Mouse.isButtonDown(0)) {
                        somethingIsSelected = false;
@@ -61,10 +61,10 @@ public class Main {
                box.draw();
            }
            if(somethingIsHovered) {
-               shapes.get(topShape).select();
+               shapes.get(topShape).setColorAlfa(0.75F);
            }
            if(Mouse.isButtonDown(0)&&somethingIsSelected) {
-               shapes.get(topShape).select();
+               shapes.get(topShape).setColorAlfa(0.5F);
                shapes.get(topShape).update(Mouse.getDX(),-Mouse.getDY());
            }
             Display.update();

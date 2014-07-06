@@ -32,11 +32,8 @@ public class Box {
     boolean isInBounds(int mouseX, int mouseY){
         return mouseX > x && mouseX < x + 50 && mouseY > y && mouseY < y + 50;
     }
-    void select(){
-        colorAlfa = 0.2f;
-    }
-    void deselect(){
-        colorAlfa = 1.0f;
+    void setColorAlfa(float alfa){
+        colorAlfa = alfa;
     }
     void update(int dx, int dy) {
         x += dx;
