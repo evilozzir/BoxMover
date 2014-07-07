@@ -44,6 +44,7 @@ public class Main {
                     addBox();
                 }
             }
+            somethingIsHovered = false;
            for(Box box : shapes) {
                boolean inBounds = box.isInBounds(Mouse.getX(), y - Mouse.getY());
                if(inBounds) {
@@ -56,9 +57,9 @@ public class Main {
                    }
                }
                if(!inBounds){
-                   if(somethingIsHovered){
-                       box.setColorAlfa(1F);
-                   }
+
+                   box.setColorAlfa(1F);
+
                    if(!Mouse.isButtonDown(0)) {
                        somethingIsSelected = false;
                    }
@@ -72,6 +73,12 @@ public class Main {
                shapes.get(topShape).setColorAlfa(0.5F);
                shapes.get(topShape).update(Mouse.getDX(),-Mouse.getDY());
            }
+           while(Mouse.next()){
+           if(somethingIsHovered&&Mouse.isButtonDown(1)&&Mouse.getEventButtonState()) {
+               shapes.remove(topShape);
+               System.out.print(1);
+           }
+            }
             Display.update();
             Display.sync(60);
         }
